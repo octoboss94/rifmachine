@@ -8,7 +8,7 @@ create table leads (
   product_type text,
   message text,
   status text default 'nouveau' check (status in ('nouveau', 'contacté', 'devis_envoyé', 'converti', 'archivé')),
-  notes text,
+  internal_notes text,
   source text default 'website'
 );
 
@@ -34,6 +34,9 @@ alter table settings enable row level security;
 
 -- Allow public insert on leads (for the contact form)
 create policy "Allow public insert" on leads for insert with check (true);
+
+-- Allow public read on settings (for the landing page)
+create policy "Public read settings" on settings for select using (true);
 
 -- Only authenticated admin can read/update leads and settings
 create policy "Admin full access leads" on leads for all using (auth.role() = 'authenticated');

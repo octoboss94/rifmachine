@@ -1,28 +1,28 @@
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server';
+import { updateSession } from './lib/supabase/middleware';
 
 export async function middleware(req: NextRequest) {
-  const res = NextResponse.next()
-  const supabase = createMiddlewareClient({ req, res })
-  
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+  // BYPASS AUTH FOR PREVIEW/DEV if using placeholder keys
+  const isPlaceholderKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.includes('your-anon-key');
+  if (isPlaceholderKey) {
+    return NextResponse.next();
+  }
+
+  const { response, user } = await updateSession(req);
 
   // Protect /admin routes
-  if (!session && req.nextUrl.pathname.startsWith('/admin') && !req.nextUrl.pathname.startsWith('/admin/login')) {
-    return NextResponse.redirect(new URL('/admin/login', req.url))
+  if (!user && req.nextUrl.pathname.startsWith('/admin') && !req.nextUrl.pathname.startsWith('/admin/login')) {
+    return NextResponse.redirect(new URL('/admin/login', req.url));
   }
 
   // Redirect admin users from login to dashboard
-  if (session && req.nextUrl.pathname.startsWith('/admin/login')) {
-    return NextResponse.redirect(new URL('/admin/dashboard', req.url))
+  if (user && req.nextUrl.pathname.startsWith('/admin/login')) {
+    return NextResponse.redirect(new URL('/admin/dashboard', req.url));
   }
 
-  return res
+  return response;
 }
 
 export const config = {
   matcher: ['/admin/:path*']
-}
+};
