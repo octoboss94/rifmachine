@@ -5,15 +5,10 @@ import {
   User, 
   Phone, 
   Mail, 
-  MessageSquare, 
   Calendar,
-  Clock,
   Package,
-  History,
   Send,
   CheckCircle,
-  XCircle,
-  ExternalLink,
   Trash2
 } from 'lucide-react';
 import Link from 'next/link';
@@ -90,8 +85,8 @@ export default async function LeadDetailPage({
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <InfoItem icon={<User />} label="Nom du client" value={lead.name} />
-              <InfoItem icon={<Phone />} label="Téléphone" value={lead.phone} hasCopy link={`tel:${lead.phone}`} />
-              <InfoItem icon={<Mail />} label="Email" value={lead.email || 'Non renseigné'} hasCopy link={lead.email ? `mailto:${lead.email}` : undefined} />
+              <InfoItem icon={<Phone />} label="Téléphone" value={lead.phone} link={`tel:${lead.phone}`} />
+              <InfoItem icon={<Mail />} label="Email" value={lead.email || 'Non renseigné'} link={lead.email ? `mailto:${lead.email}` : undefined} />
               <InfoItem icon={<Package />} label="Produit souhaité" value={lead.product_type || 'Général'} />
             </div>
 
@@ -172,7 +167,7 @@ export default async function LeadDetailPage({
   );
 }
 
-function InfoItem({ icon, label, value, hasCopy, link }: { icon: React.ReactNode, label: string, value: string, hasCopy?: boolean, link?: string }) {
+function InfoItem({ icon, label, value, link }: { icon: React.ReactNode, label: string, value: string, link?: string }) {
   const content = (
     <div className="group">
       <div className="flex items-center text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] mb-1.5">

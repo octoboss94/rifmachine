@@ -36,7 +36,7 @@ export default function WhatsAppButton({ phone }: { phone?: string }) {
       aria-label="Chat on WhatsApp"
     >
       <div className="absolute -left-32 bg-white text-black px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap hidden md:block shadow-xl mr-4">
-        Besoin d'aide ? Chattez avec nous
+        Besoin d&apos;aide ? Chattez avec nous
       </div>
       <MessageCircle size={28} />
       <span className="absolute -top-1 -right-1 flex h-4 w-4">

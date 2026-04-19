@@ -21,9 +21,6 @@ export default async function AdminLayout({
   // We rely on middleware for redirection. 
   // If we are on the login page, we don't want to show the sidebar/layout.
   // We can handle this by checking if we're in a 'protected' state.
-  
-  const isLoginPage = false; // We will handle this by moving files or checking headers
-
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white flex font-sans">
       {/* Sidebar */}

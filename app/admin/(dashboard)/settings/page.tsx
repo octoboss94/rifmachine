@@ -2,10 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import { updateSiteSettings } from '@/app/admin/actions';
 import { 
   Save, 
-  MapPin, 
   Phone, 
-  Mail, 
-  MessageSquare,
   Globe
 } from 'lucide-react';
 

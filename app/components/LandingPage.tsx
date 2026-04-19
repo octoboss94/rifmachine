@@ -100,8 +100,9 @@ export default function LandingPage({ settings }: { settings: Settings }) {
     if (statItems[0]) statsObserver.observe(statItems[0]);
 
     // SERVICE CARDS SCROLL
-    gsap.utils.toArray(".service-card").forEach((card: any, i) => {
-      gsap.to(card, {
+    gsap.utils.toArray(".service-card").forEach((card: unknown, i) => {
+      const el = card as HTMLElement;
+      gsap.to(el, {
         opacity: 1, y: 0, duration: 0.7,
         ease: "power2.out",
         delay: i * 0.1,
@@ -110,7 +111,8 @@ export default function LandingPage({ settings }: { settings: Settings }) {
     });
 
     // REVEAL ELEMENTS
-    gsap.utils.toArray(".reveal").forEach((el: any) => {
+    gsap.utils.toArray(".reveal").forEach((elem: unknown) => {
+      const el = elem as HTMLElement;
       gsap.to(el, {
         opacity: 1, y: 0, duration: 0.9,
         ease: "power2.out",
@@ -119,7 +121,8 @@ export default function LandingPage({ settings }: { settings: Settings }) {
     });
 
     // FEATURE ITEMS
-    gsap.utils.toArray(".feature-item").forEach((el: any, i) => {
+    gsap.utils.toArray(".feature-item").forEach((elem: unknown, i) => {
+      const el = elem as HTMLElement;
       gsap.to(el, {
         opacity: 1, x: 0, duration: 0.6,
         ease: "power2.out",
