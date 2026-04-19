@@ -5,8 +5,6 @@ import {
   MapPin, 
   Phone, 
   Mail, 
-  Instagram, 
-  Facebook, 
   MessageSquare,
   Globe
 } from 'lucide-react';
@@ -85,7 +83,7 @@ export default async function SettingsPage() {
           <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-xs font-bold text-white/40 uppercase tracking-wider flex items-center">
-                <Facebook size={14} className="mr-2" /> Facebook URL
+                Facebook URL
               </label>
               <input 
                 name="facebook_url"
@@ -97,7 +95,7 @@ export default async function SettingsPage() {
             </div>
             <div className="space-y-2">
               <label className="text-xs font-bold text-white/40 uppercase tracking-wider flex items-center">
-                <Instagram size={14} className="mr-2" /> Instagram URL
+                Instagram URL
               </label>
               <input 
                 name="instagram_url"
