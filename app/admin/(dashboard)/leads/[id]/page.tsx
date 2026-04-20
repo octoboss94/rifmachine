@@ -1,10 +1,11 @@
 import { createClient } from '@/lib/supabase/server';
 import { updateLeadStatus, saveLeadNotes, deleteLead } from '@/app/admin/actions';
 import { 
-  ArrowLeft, 
+  ArrowLeft,
   User, 
   Phone, 
   Mail, 
+  MessageSquare,
   Calendar,
   Package,
   Send,

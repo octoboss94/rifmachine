@@ -1,13 +1,11 @@
 import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { 
   LayoutDashboard, 
   Users, 
   Settings, 
   LogOut, 
-  Menu,
-  Phone
+  Menu
 } from 'lucide-react';
 
 export default async function AdminLayout({
@@ -16,7 +14,7 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const supabase = createClient();
-  const { data: { session } } = await supabase.auth.getSession();
+  await supabase.auth.getSession();
 
   // We rely on middleware for redirection. 
   // If we are on the login page, we don't want to show the sidebar/layout.
