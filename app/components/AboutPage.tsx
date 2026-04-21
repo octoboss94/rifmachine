@@ -112,7 +112,8 @@ export default function AboutPage({ settings }: { settings: Settings }) {
         <Link href="/apropos" onClick={closeMobileNav}>À Propos</Link>
         <Link href="/#services" onClick={closeMobileNav}>Services</Link>
         <Link href="/#contact" onClick={closeMobileNav}>Contact</Link>
-        <Link href="/#contact" className="btn-primary" onClick={closeMobileNav} style={{fontFamily:"DM Sans,sans-serif",fontSize:"0.8rem",clipPath:"none"}}>Devis Gratuit</Link>
+        <Link href="/admin/dashboard" onClick={closeMobileNav} className="text-[#E8420A] mt-4 uppercase tracking-widest text-sm">Espace Admin</Link>
+        <Link href="/#contact" className="btn-primary mt-4" onClick={closeMobileNav} style={{fontFamily:"DM Sans,sans-serif",fontSize:"0.8rem",clipPath:"none"}}>Devis Gratuit</Link>
       </div>
 
       <nav id="navbar" className={isScrolled ? "scrolled" : ""}>
@@ -135,6 +136,7 @@ export default function AboutPage({ settings }: { settings: Settings }) {
           <li><Link href="/apropos">À Propos</Link></li>
           <li><Link href="/#services">Produits</Link></li>
           <li><Link href="/#contact">Contact</Link></li>
+          <li><Link href="/admin/dashboard" className="text-white/40 hover:text-[#E8420A] ml-4 text-xs font-bold uppercase tracking-wider">Espace Admin</Link></li>
           <li><Link href="/#contact" className="nav-cta">Devis Gratuit</Link></li>
         </ul>
         <div className="hamburger" onClick={toggleMobileNav}>

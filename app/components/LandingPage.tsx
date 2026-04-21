@@ -206,7 +206,8 @@ export default function LandingPage({ settings }: { settings: Settings }) {
         <Link href="/apropos" onClick={closeMobileNav}>À Propos</Link>
         <a href="#services" onClick={closeMobileNav}>Services</a>
         <a href="#contact" onClick={closeMobileNav}>Contact</a>
-        <a href="#contact" className="btn-primary" onClick={closeMobileNav} style={{fontFamily:"DM Sans,sans-serif",fontSize:"0.8rem",clipPath:"none"}}>Devis Gratuit</a>
+        <Link href="/admin/dashboard" onClick={closeMobileNav} className="text-[#E8420A] mt-4 uppercase tracking-widest text-sm">Espace Admin</Link>
+        <a href="#contact" className="btn-primary mt-4" onClick={closeMobileNav} style={{fontFamily:"DM Sans,sans-serif",fontSize:"0.8rem",clipPath:"none"}}>Devis Gratuit</a>
       </div>
 
       <nav id="navbar" className={isScrolled ? "scrolled" : ""}>
@@ -229,6 +230,7 @@ export default function LandingPage({ settings }: { settings: Settings }) {
           <li><Link href="/apropos">À Propos</Link></li>
           <li><a href="/#services">Produits</a></li>
           <li><a href="/#contact">Contact</a></li>
+          <li><Link href="/admin/dashboard" className="text-white/40 hover:text-[#E8420A] ml-4 text-xs font-bold uppercase tracking-wider">Espace Admin</Link></li>
           <li><a href="/#contact" className="nav-cta">Devis Gratuit</a></li>
         </ul>
         <div className="hamburger" onClick={toggleMobileNav}>
