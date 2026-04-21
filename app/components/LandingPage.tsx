@@ -106,7 +106,7 @@ export default function LandingPage({ settings }: { settings: Settings }) {
         opacity: 1, y: 0, duration: 0.7,
         ease: "power2.out",
         delay: i * 0.1,
-        scrollTrigger: { trigger: card, start: "top 85%" }
+        scrollTrigger: { trigger: el, start: "top 85%" }
       });
     });
 

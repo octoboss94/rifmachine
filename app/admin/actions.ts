@@ -24,7 +24,6 @@ export async function updateSiteSettings(formData: FormData) {
   
   revalidatePath('/admin/settings');
   revalidatePath('/');
-  return { success: true };
 }
 
 export async function updateLeadStatus(leadId: string, status: string) {
