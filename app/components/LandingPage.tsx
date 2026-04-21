@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Settings {
   phone: string;
@@ -200,34 +202,34 @@ export default function LandingPage({ settings }: { settings: Settings }) {
 
       {/* MOBILE NAV */}
       <div className={`mobile-nav ${isMobileNavOpen ? 'open' : ''}`}>
-        <a href="#hero" onClick={closeMobileNav}>Accueil</a>
+        <Link href="/" onClick={closeMobileNav}>Accueil</Link>
+        <Link href="/apropos" onClick={closeMobileNav}>À Propos</Link>
         <a href="#services" onClick={closeMobileNav}>Services</a>
-        <a href="#why" onClick={closeMobileNav}>Pourquoi Nous</a>
         <a href="#contact" onClick={closeMobileNav}>Contact</a>
         <a href="#contact" className="btn-primary" onClick={closeMobileNav} style={{fontFamily:"DM Sans,sans-serif",fontSize:"0.8rem",clipPath:"none"}}>Devis Gratuit</a>
       </div>
 
       <nav id="navbar" className={isScrolled ? "scrolled" : ""}>
-        <a href="#hero" className="nav-logo">
+        <Link href="/" className="nav-logo">
           <div className="nav-logo-icon">
             <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <polygon points="30,2 58,50 2,50" fill="#1a1a1a" stroke="none"/>
               <polygon points="30,14 52,50 8,50" fill="#E8420A" stroke="none"/>
               <polygon points="30,2 58,2 44,28" fill="#1a1a1a" stroke="none"/>
-              <text x="22" y="22" font-family="Arial" font-size="8" fill="white" font-weight="bold">R.M</text>
+              <text x="22" y="22" fontFamily="Arial" fontSize="8" fill="white" fontWeight="bold">R.M</text>
             </svg>
           </div>
           <div className="nav-logo-text">
             <div className="brand">Rif <span>Machine</span> <span style={{color:"rgba(255,255,255,0.6)",fontSize:"1.1rem"}}>s.a.r.l</span></div>
             <div className="sub">{settings.address.split(',')[1] || 'Casablanca'}, Maroc</div>
           </div>
-        </a>
+        </Link>
         <ul className="nav-links">
-          <li><a href="#hero">Accueil</a></li>
-          <li><a href="#services">Produits</a></li>
-          <li><a href="#why">Avantages</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#contact" className="nav-cta">Devis Gratuit</a></li>
+          <li><Link href="/">Accueil</Link></li>
+          <li><Link href="/apropos">À Propos</Link></li>
+          <li><a href="/#services">Produits</a></li>
+          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/#contact" className="nav-cta">Devis Gratuit</a></li>
         </ul>
         <div className="hamburger" onClick={toggleMobileNav}>
           <span></span><span></span><span></span>
@@ -235,7 +237,17 @@ export default function LandingPage({ settings }: { settings: Settings }) {
       </nav>
 
       <section id="hero">
-        <div className="hero-bg"></div>
+        <div className="hero-bg">
+          <Image 
+            src="/images/hero_bg.png" 
+            alt="Rif Machine Industrial Background" 
+            fill 
+            sizes="100vw"
+            quality={90}
+            priority
+            style={{ objectFit: 'cover', opacity: 0.35 }} 
+          />
+        </div>
         <div className="hero-slash"></div>
         <div className="hero-slash-border"></div>
         <div className="hero-triangle tri1">
@@ -291,19 +303,24 @@ export default function LandingPage({ settings }: { settings: Settings }) {
         <div className="section-header reveal">
           <div className="section-eyebrow">Nos Produits</div>
           <h2 className="section-title">Ce que nous <span>proposons</span></h2>
+          <p className="max-w-2xl text-black/60 mt-6 text-lg">Découvrez notre gamme complète de matériaux industriels premium, certifiés et toujours disponibles en stock pour répondre aux exigences des plus grands chantiers.</p>
         </div>
         <div className="services-grid">
           {[
-            { id: '01', t: "Ciment & Béton", d: "Ciment portland, béton prêt à l'emploi, produits de maçonnerie. Qualité certifiée." },
-            { id: '02', t: "Fer à Béton & Acier", d: "Armatures HA, treillis soudés, profilés métalliques. Stock permanent." },
-            { id: '03', t: "Carrelage & Revêtements", d: "Large gamme de carrelages sol et mur, faïences, mosaïques." },
-            { id: '04', t: "Outillage & Machines", d: "Matériel de chantier professionnel : bétonneuses, perceuses, outils." }
+            { id: '01', t: "Ciment & Béton", d: "Ciment portland, béton prêt à l'emploi. Approuvé par les grands laboratoires nationaux." },
+            { id: '02', t: "Fer à Béton & Acier", d: "Armatures HA, treillis soudés, et profilés métalliques de très haute résistance." },
+            { id: '03', t: "Carrelage & Revêtements", d: "Gamme premium de revêtements pour sols industriels et résidentiels." },
+            { id: '04', t: "Outillage & Machines", d: "Machines lourdes professionnelles: bétonnières, treuils, échafaudages." },
+            { id: '05', t: "Matériel d'Étanchéité", d: "Solutions d'isolation thermique et acoustique, membranes bitumineuses." },
+            { id: '06', t: "Équipement de Protection", d: "EPI, casques, gants de haute qualité pour la sécurité de vos équipes." }
           ].map((s, i) => (
-            <div key={i} className="service-card">
-              <span className="service-number">{s.id}</span>
-              <h3 className="service-title">{s.t}</h3>
+            <div key={i} className="service-card group">
+              <span className="service-number opacity-30 group-hover:opacity-10 transition-opacity">{s.id}</span>
+              <h3 className="service-title group-hover:text-[#E8420A] transition-colors">{s.t}</h3>
               <p className="service-desc">{s.d}</p>
-              <a href="#contact" className="service-link">Demander un prix</a>
+              <Link href="/#contact" className="service-link">
+                Demander un prix <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </Link>
             </div>
           ))}
         </div>
@@ -377,8 +394,11 @@ export default function LandingPage({ settings }: { settings: Settings }) {
             </div>
           </div>
         </div>
-        <div className="footer-bottom">
+        <div className="footer-bottom flex justify-between items-center">
           <p>© 2026 <span>Rif Machine s.a.r.l</span> — Tous droits réservés.</p>
+          <Link href="/admin/dashboard" className="text-white/20 hover:text-orange-500 transition-colors" title="Espace Administrateur">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </Link>
         </div>
       </footer>
     </>
