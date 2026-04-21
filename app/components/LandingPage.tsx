@@ -299,28 +299,71 @@ export default function LandingPage({ settings }: { settings: Settings }) {
         </div>
       </section>
 
-      <section id="services">
-        <div className="section-header reveal">
-          <div className="section-eyebrow">Nos Produits</div>
-          <h2 className="section-title">Ce que nous <span>proposons</span></h2>
-          <p className="max-w-2xl text-black/60 mt-6 text-lg">Découvrez notre gamme complète de matériaux industriels premium, certifiés et toujours disponibles en stock pour répondre aux exigences des plus grands chantiers.</p>
+      <section id="services" className="pt-32 pb-16">
+        <div className="section-header reveal mb-20 text-center flex flex-col items-center">
+          <div className="section-eyebrow">Le Catalogue</div>
+          <h2 className="section-title">Matériaux d&apos;<span>Exception</span></h2>
+          <p className="max-w-3xl text-black/60 mt-6 text-xl">Notre gigantesque capacité de stockage de 50 000 m² à Casablanca nous permet de vous fournir instantanément les matériaux les plus rares et les plus demandés du marché industriel.</p>
         </div>
-        <div className="services-grid">
+
+        <div className="product-showcase flex flex-col gap-y-32 mb-32">
           {[
-            { id: '01', t: "Ciment & Béton", d: "Ciment portland, béton prêt à l'emploi. Approuvé par les grands laboratoires nationaux." },
-            { id: '02', t: "Fer à Béton & Acier", d: "Armatures HA, treillis soudés, et profilés métalliques de très haute résistance." },
-            { id: '03', t: "Carrelage & Revêtements", d: "Gamme premium de revêtements pour sols industriels et résidentiels." },
-            { id: '04', t: "Outillage & Machines", d: "Machines lourdes professionnelles: bétonnières, treuils, échafaudages." },
-            { id: '05', t: "Matériel d'Étanchéité", d: "Solutions d'isolation thermique et acoustique, membranes bitumineuses." },
-            { id: '06', t: "Équipement de Protection", d: "EPI, casques, gants de haute qualité pour la sécurité de vos équipes." }
+            { id: '01', key: 'prod_ciment', t: "Ciment & Béton Industriel", sub: "La Fondation de l'Excellence", d: "Nous distribuons du ciment Portland CPJ 45 et CPJ 35, idéal pour les grands ouvrages d'art et la maçonnerie générale. Nos centrales partenaires garantissent un béton prêt à l'emploi (BPE) d'une homogénéité absolue, contrôlé en permanence par des laboratoires indépendants." },
+            { id: '02', key: 'prod_acier', t: "Fer à Béton & Armatures", sub: "Une Résistance Inébranlable", d: "Notre division Acier stocke des milliers de tonnes d'armatures Haute Adhérence (HA), de treillis soudés de forte section et de profilés métalliques lourds. Conçus pour résister aux contraintes sismiques, nos bétons armés constituent l'ossature des plus grandes tours de la ville." },
+            { id: '03', key: 'prod_carrelage', t: "Carrelage & Revêtements", sub: "L'Esthétique sans Compromis", d: "Importateurs directs des plus grandes marques européennes, nous vous offrons un catalogue premium de carrelages grand format, de marbres reconstitués et de faïences murales. Nos revêtements industriels supportent le trafic lourd (chariots, machines) sans la moindre fissure." },
+            { id: '04', key: 'prod_machines', t: "Outillage & Machines Lourdes", sub: "La Force de Déploiement", d: "Équipez vos chantiers avec le matériel le plus fiable du marché. De la simple bétonnière tractée aux imposants complexes d'échafaudages tubulaires, en passant par nos treuils de levage haute sécurité. La productivité de vos équipes est notre priorité." },
+            { id: '05', key: 'prod_etancheite', t: "Matériel d'Étanchéité", sub: "Une Isolation Parfaite", d: "Protégez vos bâtiments contre les intempéries et les chocs thermiques. Nous proposons des membranes bitumineuses SBS/APP élastomères, des isolants thermiques Polyuréthane (PUR) et des mousses acoustiques de classe mondiale. Un confort garanti à vie." },
+            { id: '06', key: 'prod_protection', t: "Équipement de Protection (EPI)", sub: "La Sécurité Avant Tout", d: "Vos ouvriers méritent ce qu'il y a de meilleur. Nous fournissons des gammes complètes d'Équipements de Protection Individuelle: casques antichocs ventilés, harnais de maintien, gants anti-coupure et chaussures de sécurité conformes aux normes marocaines NM et européennes." }
           ].map((s, i) => (
-            <div key={i} className="service-card group">
-              <span className="service-number opacity-30 group-hover:opacity-10 transition-opacity">{s.id}</span>
-              <h3 className="service-title group-hover:text-[#E8420A] transition-colors">{s.t}</h3>
-              <p className="service-desc">{s.d}</p>
-              <Link href="/#contact" className="service-link">
-                Demander un prix <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </Link>
+            <div key={i} className={`flex flex-col lg:flex-row gap-16 items-center px-[5%] product-row ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+              <div className="w-full lg:w-1/2 h-[500px] md:h-[600px] relative overflow-hidden [clip-path:polygon(0_0,100%_0,100%_90%,90%_100%,0_100%)] reveal scale-95 shadow-2xl">
+                <Image 
+                  src={`/images/${s.key}.png`}
+                  alt={s.t}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={90}
+                  className="object-cover transform transition-transform duration-1000 hover:scale-110 filter saturate-150 contrast-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+                <div className="absolute bottom-6 left-8 text-white font-['Bebas_Neue'] text-5xl opacity-40 select-none tracking-widest">{s.id}</div>
+              </div>
+              <div className="w-full lg:w-1/2 space-y-6 reveal">
+                <div className="text-[#E8420A] tracking-wider uppercase text-sm font-bold">{s.sub}</div>
+                <h3 className="font-['Bebas_Neue'] text-5xl md:text-6xl text-[var(--dark)] uppercase leading-none tracking-wide">{s.t}</h3>
+                <p className="text-xl text-black/60 leading-relaxed max-w-lg pb-4">{s.d}</p>
+                <Link href="#contact" className="inline-flex items-center gap-3 border-b-2 border-[#E8420A] text-[var(--dark)] hover:text-[#E8420A] font-bold uppercase tracking-wider pb-1 transition-colors group">
+                  Demander un devis 
+                  <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PROCESSUS SECTION */}
+      <section id="processus" className="bg-[#0e0e0e] py-32 px-[5%] relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#E8420A] via-transparent to-transparent"></div>
+        
+        <div className="text-center max-w-4xl mx-auto mb-20 reveal">
+          <div className="text-[#E8420A] tracking-wider uppercase text-sm font-bold mb-4">La Logistique Rif Machine</div>
+          <h2 className="font-['Bebas_Neue'] text-5xl md:text-7xl text-white tracking-wide">Livraison en <span className="text-[#E8420A]">48 Heures</span></h2>
+          <p className="text-white/60 text-lg mt-6 max-w-2xl mx-auto">Un processus fluide, de la commande à la livraison sur votre chantier, assuré par notre redoutable flotte de camions poids lourds.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 max-w-6xl mx-auto">
+          {[
+            { n: '1', t: "Analyse des Besoins", d: "Notre équipe chiffre avec exactitude les quantitatifs nécessaires à partir de vos plans de construction, pour éliminer toute perte." },
+            { n: '2', t: "Préparation Centrale", d: "Vos matériaux sont conditionnés et palettisés depuis nos entrepôts massifs de la zone industrielle de Casablanca." },
+            { n: '3', t: "Déploiement In Situ", d: "Livraison par notre propre flotte de camions grues. Aucun retard toléré. Vos équipes travaillent sans interruption." }
+          ].map((p, i) => (
+            <div key={i} className="reveal bg-[#161616] border border-white/5 p-12 hover:border-[#E8420A]/30 transition-colors group relative overflow-hidden [clip-path:polygon(0_0,100%_0,100%_90%,90%_100%,0_100%)]">
+              <div className="absolute -bottom-10 -right-10 text-9xl font-['Bebas_Neue'] text-white/[0.03] group-hover:text-[#E8420A]/10 transition-colors">{p.n}</div>
+              <div className="w-12 h-1 bg-[#E8420A] mb-8 group-hover:w-20 transition-all duration-500"></div>
+              <h4 className="text-2xl font-bold text-white mb-4 tracking-wide">{p.t}</h4>
+              <p className="text-white/50 leading-relaxed">{p.d}</p>
             </div>
           ))}
         </div>
