@@ -23,12 +23,12 @@ export default async function AdminLayout({
     <div className="min-h-screen bg-[#0e0e0e] text-white flex font-sans">
       {/* Sidebar */}
       <aside className="w-64 border-r border-white/10 hidden md:flex flex-col">
-        <div className="p-6 border-b border-white/10">
-          <h1 className="text-2xl font-bold uppercase tracking-wider font-['Bebas_Neue']">
+        <Link href="/" className="p-6 border-b border-white/10 block group">
+          <h1 className="text-2xl font-bold uppercase tracking-wider font-['Bebas_Neue'] group-hover:text-[#E8420A] transition-colors">
             Rif <span className="text-[#E8420A]">Machine</span>
           </h1>
           <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] mt-1">Console Admin</p>
-        </div>
+        </Link>
         
         <nav className="flex-1 p-4 space-y-2">
           <Link href="/admin/dashboard" className="flex items-center space-x-3 p-3 rounded hover:bg-white/5 transition-colors text-white/70 hover:text-white">
