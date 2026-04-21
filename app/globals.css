@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -1006,10 +1006,22 @@
     .hamburger { display: flex; }
     .services-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
-    .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+    .hero-title { font-size: clamp(3rem, 12vw, 4.5rem); line-height: 1.05; }
+    .hero-title .line-inner { padding-bottom: 5px; }
+    .hero-subtitle { font-size: 1rem; max-width: 100%; }
+    .hero-buttons { flex-direction: column; width: 100%; gap: 1rem; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
     .footer-top { grid-template-columns: 1fr; }
     .hero-slash { display: none; }
+    .hero-slash-border { display: none; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-number { font-size: 2.5rem; }
+    .stat-item { padding: 1.5rem 1rem; }
+    .section-title { font-size: clamp(2rem, 8vw, 3rem); }
+    .why-left .section-title { font-size: clamp(2.5rem, 8vw, 3rem); }
+    .promo-title { font-size: clamp(2.5rem, 8vw, 3rem); }
+    .contact-info p { margin-bottom: 2rem; }
+    .form-card { padding: 2rem 1.5rem; }
   }
 
   /* SCROLL REVEAL INITIAL */

@@ -141,6 +141,14 @@ export default function LandingPage({ settings }: { settings: Settings }) {
   const toggleMobileNav = () => setMobileNavOpen(!isMobileNavOpen);
   const closeMobileNav = () => setMobileNavOpen(false);
 
+  useEffect(() => {
+    if (isMobileNavOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileNavOpen]);
+
   const submitForm = async () => {
     if (!formData.name || !formData.phone) return;
 
