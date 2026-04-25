@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 
 export const metadata: Metadata = {
   title: "Rif Machine | Matériaux de Construction à Casablanca",
   description: "Vente de matériaux de construction en gros et détail à Casablanca. Ciment, fer à béton, carrelage et outillage professionnel.",
 };
 
+export const revalidate = 60; // Revalidate layout every 60 seconds
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = createClient();
+  const supabase = createPublicClient();
   const { data: settings } = await supabase.from('settings').select('whatsapp').single();
 
   return (

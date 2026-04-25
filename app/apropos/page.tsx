@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
+import { createPublicClient } from '@/lib/supabase/public';
 import AboutPage from '../components/AboutPage';
 
 export const metadata = {
@@ -6,8 +6,10 @@ export const metadata = {
   description: 'Découvrez l\'histoire et les valeurs de Rif Machine, votre partenaire de confiance en construction à Casablanca.',
 };
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default async function Page() {
-  const supabase = createClient();
+  const supabase = createPublicClient();
   
   // Fetch site settings
   const { data: settings } = await supabase

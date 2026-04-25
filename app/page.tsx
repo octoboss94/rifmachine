@@ -1,8 +1,10 @@
-import { createClient } from '@/lib/supabase/server';
+import { createPublicClient } from '@/lib/supabase/public';
 import LandingPage from './components/LandingPage';
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default async function Home() {
-  const supabase = createClient();
+  const supabase = createPublicClient();
   
   // Fetch site settings
   const { data: settings } = await supabase
