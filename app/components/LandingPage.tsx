@@ -318,26 +318,36 @@ export default function LandingPage({ settings }: { settings: Settings }) {
             { id: '06', key: 'prod_protection', t: "Équipement de Protection (EPI)", sub: "La Sécurité Avant Tout", d: "Vos ouvriers méritent ce qu'il y a de meilleur. Nous fournissons des gammes complètes d'Équipements de Protection Individuelle: casques antichocs ventilés, harnais de maintien, gants anti-coupure et chaussures de sécurité conformes aux normes marocaines NM et européennes." }
           ].map((s, i) => (
             <div key={i} className={`flex flex-col lg:flex-row gap-16 items-center px-[5%] product-row ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
-              <div className="w-full lg:w-1/2 h-[500px] md:h-[600px] relative overflow-hidden [clip-path:polygon(0_0,100%_0,100%_90%,90%_100%,0_100%)] reveal scale-95 shadow-2xl">
+              <Link href={`/produits/${s.key}`} className="w-full lg:w-1/2 h-[500px] md:h-[600px] relative overflow-hidden [clip-path:polygon(0_0,100%_0,100%_90%,90%_100%,0_100%)] reveal scale-95 shadow-2xl block group cursor-pointer">
                 <Image 
                   src={`/images/${s.key}.png`}
                   alt={s.t}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   quality={90}
-                  className="object-cover transform transition-transform duration-1000 hover:scale-110 filter saturate-150 contrast-110"
+                  className="object-cover transform transition-transform duration-1000 group-hover:scale-110 filter saturate-150 contrast-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none group-hover:from-[#E8420A]/60 transition-colors duration-500"></div>
                 <div className="absolute bottom-6 left-8 text-white font-['Bebas_Neue'] text-5xl opacity-40 select-none tracking-widest">{s.id}</div>
-              </div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                   <span className="bg-[#E8420A] text-white px-8 py-3 font-bold tracking-wider uppercase text-sm flex items-center gap-2">Découvrir les détails <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+              </Link>
               <div className="w-full lg:w-1/2 space-y-6 reveal">
                 <div className="text-[#E8420A] tracking-wider uppercase text-sm font-bold">{s.sub}</div>
-                <h3 className="font-['Bebas_Neue'] text-5xl md:text-6xl text-[var(--dark)] uppercase leading-none tracking-wide">{s.t}</h3>
-                <p className="text-xl text-black/60 leading-relaxed max-w-lg pb-4">{s.d}</p>
-                <Link href="#contact" className="inline-flex items-center gap-3 border-b-2 border-[#E8420A] text-[var(--dark)] hover:text-[#E8420A] font-bold uppercase tracking-wider pb-1 transition-colors group">
-                  Demander un devis 
-                  <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                <Link href={`/produits/${s.key}`} className="block hover:opacity-80 transition-opacity">
+                  <h3 className="font-['Bebas_Neue'] text-5xl md:text-6xl text-[var(--dark)] uppercase leading-none tracking-wide">{s.t}</h3>
                 </Link>
+                <p className="text-xl text-black/60 leading-relaxed max-w-lg pb-4">{s.d}</p>
+                <div className="flex flex-wrap items-center gap-8">
+                  <Link href={`/produits/${s.key}`} className="inline-flex items-center gap-3 border-b-2 border-[#E8420A] text-[var(--dark)] hover:text-[#E8420A] font-bold uppercase tracking-wider pb-1 transition-colors group">
+                    Plus de détails
+                    <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                  </Link>
+                  <Link href="/#contact" className="inline-flex items-center gap-3 border-b-2 border-transparent hover:border-[#E8420A] text-[var(--dark)]/60 hover:text-[#E8420A] font-bold uppercase tracking-wider pb-1 transition-colors group">
+                    Demander un devis 
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
